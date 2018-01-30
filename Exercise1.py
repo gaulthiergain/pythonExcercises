@@ -1,4 +1,12 @@
+"""
+Exercice 1 (Cisco Incubator 2017-2018)
+Gaulthier Gain 
 
+Libs used:
+https://docs.python.org/3/library/ipaddress.html
+"""
+
+from __future__ import unicode_literals
 import ipaddress
 
 """
@@ -37,3 +45,10 @@ while True:
 		break
 	except:
 			print("Subnet mask is invalid")
+
+print('{:8}'.format(' ') .join(x for x in str(ip_address).split('.')))
+print(' ' .join(format(int(x), '08b') for x in str(ip_address).split('.')))
+
+ip_network = ipaddress.ip_network(unicode(str(ip_address) + ip_mask), strict=False)
+print ("network address is: "+ str(ip_network))
+print("broadcast address is: " + str(ip_network.broadcast_address) + ip_mask)
