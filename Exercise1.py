@@ -6,7 +6,6 @@ Libs used:
 https://docs.python.org/3/library/ipaddress.html
 """
 
-from __future__ import unicode_literals
 import ipaddress
 
 """
