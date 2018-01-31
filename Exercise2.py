@@ -46,5 +46,5 @@ for vlan in Counter(list_vlans).iteritems():
 common_vlans.sort(key=int)
 unique_vlans.sort(key=int)
 
-print "List_1 =", common_vlans
-print "List_2 =", unique_vlans
+print 'List_1 =' + str(common_vlans)
+print 'List_2 =' + str(unique_vlans)
