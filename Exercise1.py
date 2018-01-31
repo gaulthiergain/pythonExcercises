@@ -27,7 +27,7 @@ def checkMask(mask):
 while True:
 	ip_address = raw_input("Enter Ip address: ")
 	try:
-		#Use ipaddress module to check the validity of ip address
+		# Use ipaddress module to check the validity of ip address
 		ip_address = unicode(ip_address, "UTF-8")
 		ip_address = ipaddress.ip_address(ip_address)
 		break
@@ -39,7 +39,7 @@ while True:
 	ip_mask = raw_input("Enter subnet mask in decimal format: ")
 	try:
 		if(not checkMask(ip_mask)):
-			#Raise exception if the mask is invalid
+			# Raise exception if the mask is invalid
 			raise Exception('Invalid Mask Exception')
 		break
 	except:
