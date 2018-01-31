@@ -1,43 +1,48 @@
 """
 Exercice 2 (Cisco Incubator 2017-2018)
-Gaulthier Gain 
-
+Gaulthier Gain
+    
 Libs used:
-
+https://docs.python.org/2/library/re.html
+https://docs.python.org/2/library/collections.html#collections.Counter
 """
 
 import re
 from collections import Counter
 
 filename = 'commands.txt'
-pattern = r'(?:^switchport\s+trunk\s+allowed\s+vlan\s+)(?P<vlans>[\d,]+)'
+pattern = r'(?:^switchport\s+trunk\s+allowed\s+vlan\s+)(?P<vlan>[\d,]+)'
 
-listVlans = list()
+list_vlans = list()
 common_vlans = list()
 unique_vlans = list()
 
 try:
-	file = open(filename, 'r')
-	while True:
-			line = file.readline()
-			if (line == ''):
-				break
-			
-			m=re.search(pattern, line)
-			if(m):
-				for vlan_digit in m.group('vlans').split(","):
-					listVlans.append(vlan_digit)
+    file = open(filename, 'r')
+    while True:
+        line = file.readline()
+        if (line == ''):
+            break
+
+        # Use regex and then split each digit into a list
+        m = re.search(pattern, line)
+        if(m):
+            for vlan_digit in m.group('vlan').split(","):
+                list_vlans.append(vlan_digit)
 except IOError:
-	print 'The file couldn\'t be found'
-	exit()
+    print 'The file couldn\'t be found'
+    exit()
 
-counter = Counter(listVlans)
-for vlan in counter.iteritems():
-	if vlan[1] == 1:
-		unique_vlans.append(vlan[0])
-	else:
-		common_vlans.append(vlan[0])
+# Count the number of vlans in the list using a Counter object
+for vlan in Counter(list_vlans).iteritems():
+    if vlan[1] == 1:
+        # vlan appears once
+        unique_vlans.append(vlan[0])
+    else:
+        # several vlans
+        common_vlans.append(vlan[0])
 
+# Sort lists by ascending order
 common_vlans.sort(key=int)
 unique_vlans.sort(key=int)
 
