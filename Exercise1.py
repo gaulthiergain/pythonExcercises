@@ -9,21 +9,21 @@ https://docs.python.org/3/library/ipaddress.html
 import ipaddress
 
 """
-Check the validity of mask
+This function allowing to check the validity of a given mask
 """
 def checkMask(mask):
 	try:
 		mask_number = int(mask.split('/')[1])
 	except:
+        # If the mask is invalid, catch exception
 		return False
 
 	if mask_number < 1 or mask_number > 32:
 		return False
 	return True
 
-"""
-Check the validity of ip address
-"""
+
+#1. Check the validity of ip address
 while True:
 	ip_address = raw_input("Enter Ip address: ")
 	try:
@@ -34,7 +34,7 @@ while True:
 	except ValueError:
 		print("Invalid IP address format")
 	
-
+#2. Check the validity of ip address
 while True:
 	ip_mask = raw_input("Enter subnet mask in decimal format: ")
 	try:
@@ -45,9 +45,9 @@ while True:
 	except:
 			print("Subnet mask is invalid")
 
+#3. Print ip address as binary format, network address and broadcast address
 print('{:8}'.format(' ') .join(x for x in str(ip_address).split('.')))
 print(' ' .join(format(int(x), '08b') for x in str(ip_address).split('.')))
-
 ip_network = ipaddress.ip_network(unicode(str(ip_address) + ip_mask), strict=False)
 print ("network address is: "+ str(ip_network))
 print("broadcast address is: " + str(ip_network.broadcast_address) + ip_mask)
