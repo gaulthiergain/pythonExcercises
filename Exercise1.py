@@ -15,7 +15,7 @@ def checkMask(mask):
 	try:
 		mask_number = int(mask.split('/')[1])
 	except:
-        # If the mask is invalid, catch exception
+		# If the mask is invalid, catch exception
 		return False
 
 	if mask_number < 1 or mask_number > 32:
